@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Button from "./Button";
-import Dropdown from "./Dropdown";
+import AutoComplete from "./AutoComplete";
 
 const NewScan = ({ handleFormData, data, handleDuplicateData, handleDeleteForm, id }) => {
   const [measureRootStart, setMeasureRootStart] = useState( data.measureRootStart || null);
@@ -62,8 +62,8 @@ const NewScan = ({ handleFormData, data, handleDuplicateData, handleDeleteForm, 
       style={{
         display: "flex"
       }}>
-        {data.measureRootStart
-          && <Dropdown
+        {measureRootStart
+          && <AutoComplete 
             handleDropdownValue={(value, key) => handleFormValue(setOffsetStart, value, key)}
             options={["Latest", "1 Day ago", "2 Day ago"]}
             label="offsetStart"
@@ -72,7 +72,7 @@ const NewScan = ({ handleFormData, data, handleDuplicateData, handleDeleteForm, 
           />
         }
 
-        <Dropdown
+        <AutoComplete 
           handleDropdownValue={(value, key) => handleFormValue(setMeasureRootStart, value, key)}
           options={["open", "high", "low", "close"]}
           label="measureRootStart"
@@ -82,8 +82,8 @@ const NewScan = ({ handleFormData, data, handleDuplicateData, handleDeleteForm, 
         />
 
         {
-          (data.offsetStart || data.measureRootStart)
-          && <Dropdown
+          (offsetStart || measureRootStart)
+          && <AutoComplete 
             handleDropdownValue={(value, key) => handleFormValue(setOperation, value, key)}
             options={["equals", "less than", "greater than"]}
             label="operation"
@@ -94,8 +94,8 @@ const NewScan = ({ handleFormData, data, handleDuplicateData, handleDeleteForm, 
         }
 
         {
-          (data.operation || data.measureRootEnd)
-          && <Dropdown
+          (operation || measureRootEnd)
+          && <AutoComplete 
             handleDropdownValue={(value, key) => handleFormValue(setOffsetEnd, value, key)}
             options={["Latest", "1 Day ago", "2 Day ago"]}
             label="offsetEnd"
@@ -105,8 +105,8 @@ const NewScan = ({ handleFormData, data, handleDuplicateData, handleDeleteForm, 
         }
 
         {
-          data.operation
-          && <Dropdown
+          operation
+          && <AutoComplete 
             handleDropdownValue={(value, key) => handleFormValue(setMeasureRootEnd, value, key)}
             options={["open", "high", "low", "close"]}
             label="measureRootEnd"
